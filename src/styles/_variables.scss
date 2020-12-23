@@ -1,0 +1,20 @@
+// Breakpoints
+$bp-mobile-small: 230px;
+$bp-mobile-medium: 375px;
+$bp-mobile-large: 425px;
+$bp-tablet: 768px;
+$bp-laptop: 1366px;
+$bp-laptop-large: 1440px;
+$bp-laptop-extra-large: 1920px;
+$bp-4k: 2560px;
+
+// Media Queries
+$mq-mobile-small: "(min-width: #{$bp-mobile-small})";
+$mq-mobile-medium: "(min-width: #{$bp-mobile-medium})";
+$mq-mobile-large: "(min-width: #{$bp-mobile-large})";
+$mq-tablet: "(min-width: #{$bp-tablet})";
+$mq-laptop: "(min-width: #{$bp-laptop})";
+$mq-laptop-large: "(min-width: #{$bp-laptop-large})";
+$mq-laptop-extra-large: "(min-width: #{$bp-laptop-extra-large})";
+$mq-4k: "(min-width: #{$bp-4k})";
+$mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";

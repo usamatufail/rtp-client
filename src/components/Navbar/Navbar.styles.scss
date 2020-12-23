@@ -1,0 +1,105 @@
+.menuBar {
+  padding-right: 30px;
+  padding-left: 50px;
+  border-bottom: solid 1px #e8e8e8;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 75px;
+}
+
+.logo {
+  float: left;
+  h3.ant-typography {
+    white-space: nowrap;
+    margin-bottom: 0px !important;
+  }
+}
+
+.logo a {
+  display: block;
+  font-size: 0px;
+  text-transform: capitalize;
+}
+
+.menuCon {
+  width: calc(100% - 150px);
+  float: left;
+}
+
+.menuCon .ant-menu-horizontal {
+  border-bottom: none;
+}
+
+.menuCon .rightMenu {
+  float: right;
+}
+
+.barsMenu {
+  float: right;
+  height: 32px;
+  padding: 6px;
+  margin-top: 8px;
+  display: none !important;
+}
+
+.barsBtn {
+  display: block;
+  width: 20px;
+  height: 2px;
+  position: relative;
+}
+
+.barsBtn:after,
+.barsBtn:before {
+  content: attr(x);
+  width: 20px;
+  position: absolute;
+  top: -6px;
+  left: 0;
+  height: 2px;
+}
+
+.barsBtn:after {
+  top: auto;
+  bottom: -6px;
+}
+
+.ant-drawer-body {
+  padding: 0;
+}
+
+.barsMenu > span {
+  display: block;
+}
+
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-item,
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-submenu {
+  display: inline-block;
+  width: 100%;
+}
+
+.ant-drawer-body .ant-menu-horizontal {
+  border-bottom: none;
+}
+
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-item:hover {
+  border-bottom-color: transparent;
+}
+
+.menuCon .ant-menu-item a {
+  font-weight: 600;
+}
+.menuCon .ant-menu-submenu div.ant-menu-submenu-title {
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .barsMenu {
+    display: inline-block !important;
+  }
+  .rightMenu {
+    display: none;
+  }
+}
