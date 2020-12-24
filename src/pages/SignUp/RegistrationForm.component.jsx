@@ -1,5 +1,6 @@
 import React from "react";
-import { Form, Input, Checkbox, Button, Typography } from "antd";
+import { Form, Input, Checkbox, Button, Typography, Row, Col } from "antd";
+import { Link } from "react-router-dom";
 import { useAuth } from "context/AuthContext";
 
 export const RegistrationForm = () => {
@@ -15,7 +16,7 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <>
+    <div style={{ minWidth: "375px" }}>
       <Typography.Title level={2}>Sign Up</Typography.Title>
       <Form
         layout={"vertical"}
@@ -97,11 +98,16 @@ export const RegistrationForm = () => {
           </Checkbox>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button style={{ width: "100%" }} type="primary" htmlType="submit">
             Register
           </Button>
         </Form.Item>
       </Form>
-    </>
+      <Row gutter={16} align="middle" justify="center">
+        <Col>
+          <Link to="/login">Already have an account? Login Now</Link>
+        </Col>
+      </Row>
+    </div>
   );
 };

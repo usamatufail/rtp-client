@@ -3,21 +3,20 @@ import { Form, Input, Button, Typography, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import { useAuth } from "context/AuthContext";
 
-export const LoginForm = () => {
+export const ForgotPasswordForm = () => {
   const [form] = Form.useForm();
 
-  //Extracting login function from authContext
-  const { login } = useAuth();
+  //Extracting resetPassword function from authContext
+  const { resetPassword } = useAuth();
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-    const { email, password } = values;
-    login(email, password);
+    const { email } = values;
+    resetPassword(email);
   };
 
   return (
     <div style={{ minWidth: "375px" }}>
-      <Typography.Title level={2}>Log in</Typography.Title>
+      <Typography.Title level={2}>Password Reset</Typography.Title>
       <Form
         layout={"vertical"}
         form={form}
@@ -41,33 +40,19 @@ export const LoginForm = () => {
         >
           <Input />
         </Form.Item>
-
-        <Form.Item
-          name="password"
-          label="Password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input.Password />
-        </Form.Item>
         <Form.Item>
           <Button
             type="primary"
             htmlType="submit"
             style={{ marginTop: "1rem", width: "100%" }}
           >
-            Login
+            Reset Password
           </Button>
         </Form.Item>
       </Form>
       <Row gutter={16} align="middle" justify="center">
         <Col>
-          <Link to="/forgot-password">Forgot password?</Link>
+          <Link to="/login">Login</Link>
         </Col>
         <Col>|</Col>
         <Col>

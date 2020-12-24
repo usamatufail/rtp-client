@@ -8,7 +8,10 @@ const Login = () => {
     <Row className="login">
       <Col span={24}>
         <Row align="middle" justify="center">
-          <Col span={12}>
+          <Col
+            span={12}
+            style={{ display: "inline-flex", justifyContent: "center" }}
+          >
             <LoginForm />
           </Col>
         </Row>

@@ -1,18 +1,18 @@
 import { Row, Col } from "antd";
-import { RegistrationForm } from "./RegistrationForm.component";
+import { ForgotPasswordForm } from "./ForgotPasswordForm.component";
 import { withoutAuth } from "hocs";
-import "./SignUp.styles.scss";
+import "./ForgotPassword.styles.scss";
 
-const SignUp = () => {
+const Login = () => {
   return (
-    <Row className="signup">
+    <Row className="login">
       <Col span={24}>
         <Row align="middle" justify="center">
           <Col
             span={12}
             style={{ display: "inline-flex", justifyContent: "center" }}
           >
-            <RegistrationForm />
+            <ForgotPasswordForm />
           </Col>
         </Row>
       </Col>
@@ -20,4 +20,4 @@ const SignUp = () => {
   );
 };
 
-export default withoutAuth(SignUp);
+export default withoutAuth(Login);

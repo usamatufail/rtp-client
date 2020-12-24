@@ -72,12 +72,30 @@ export const AuthProvider = ({ children }) => {
       });
     }
   };
+  // Reset Password Function
+  const resetPassword = async (email) => {
+    try {
+      await auth.sendPasswordResetEmail(email);
+      notification.success({
+        message: "Please check your email.",
+        description: "We have sent you a link to reset your password",
+        placement: "bottomRight",
+      });
+    } catch (error) {
+      notification.error({
+        message: "Error",
+        description: error.message,
+        placement: "bottomRight",
+      });
+    }
+  };
 
   const value = {
     currentUser,
     login,
     signup,
     logout,
+    resetPassword,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
