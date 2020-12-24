@@ -1,4 +1,5 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
+import {message} from 'antd';
 import { auth } from "../firebase";
 // Creating Authentication Context
 const AuthContext = createContext();
@@ -11,19 +12,24 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
-    const unsubscriber = auth.onAuthStateChange((user) => {
+    const unsubscriber = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
     });
     return unsubscriber;
   }, []);
 
-  const signup = (email, password) => {
-    auth.createUserWithEmailAndPassword(email, password);
+  const signup = async (email, password) => {
+    try {
+      await auth.createUserWithEmailAndPassword(email, password);
+      message.success('You are successfully registered.')
+    } catch(error) {
+      message.error(error.message);
+    }
   };
 
   const value = {
     currentUser,
-    signup
+    signup,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

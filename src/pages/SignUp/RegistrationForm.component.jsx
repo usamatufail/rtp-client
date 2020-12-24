@@ -10,6 +10,8 @@ export const RegistrationForm = () => {
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
+    const { email, password } = values;
+    signup(email, password);
   };
 
   return (
