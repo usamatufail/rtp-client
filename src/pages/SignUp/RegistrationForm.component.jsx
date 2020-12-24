@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Checkbox, Button, Typography } from "antd";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "context/AuthContext";
 
 export const RegistrationForm = () => {
   const [form] = Form.useForm();

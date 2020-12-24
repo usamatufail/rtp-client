@@ -1,5 +1,6 @@
 import { Row, Col } from "antd";
 import { RegistrationForm } from "./RegistrationForm.component";
+import { withoutAuth } from "hocs";
 import "./SignUp.styles.scss";
 
 const SignUp = () => {
@@ -16,4 +17,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default withoutAuth(SignUp);

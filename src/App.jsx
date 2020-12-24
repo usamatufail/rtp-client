@@ -1,9 +1,8 @@
 import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
-import { Error404 } from "./components";
-import { Navbar } from "./components";
-import pages from "./pages";
-import { AuthProvider } from "./context/AuthContext";
+import { Error404, Navbar } from "components";
+import pages from "pages";
+import { AuthProvider } from "context/AuthContext";
 
 function App() {
   return (

@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // Ant Design Components
-import { Menu, Grid } from "antd";
+import { Menu, Grid, Button } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import { useAuth } from "context/AuthContext";
 // Extracting Sub Components from Ant Design Components
 const { SubMenu } = Menu;
 const MenuItemGroup = Menu.ItemGroup;
 const { useBreakpoint } = Grid;
-
 const MenuLinks = () => {
+  const { currentUser, logout } = useAuth();
   const { md } = useBreakpoint();
   return (
     <Menu mode={md ? "horizontal" : "inline"}>
@@ -39,12 +40,22 @@ const MenuLinks = () => {
       <Menu.Item key="teach">
         <Link to="/teach">Teach on Gura</Link>
       </Menu.Item>
-      <Menu.Item key="signup">
-        <Link to="/signup">Sign up</Link>
-      </Menu.Item>
-      <Menu.Item key="login">
-        <Link to="/login">Log in</Link>
-      </Menu.Item>
+      {!currentUser ? (
+        <>
+          <Menu.Item key="signup">
+            <Link to="/signup">Sign up</Link>
+          </Menu.Item>
+          <Menu.Item key="login">
+            <Link to="/login">Log in</Link>
+          </Menu.Item>
+        </>
+      ) : (
+        <>
+          <Menu.Item key="login" className="logout-button">
+            <Button onClick={logout}>Logout</Button>
+          </Menu.Item>
+        </>
+      )}
     </Menu>
   );
 };
