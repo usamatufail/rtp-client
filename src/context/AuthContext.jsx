@@ -1,6 +1,7 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
-import { message } from "antd";
+import { notification } from "antd";
 import { auth } from "../firebase";
+import { useHistory } from "react-router-dom";
 // Creating Authentication Context
 const AuthContext = createContext();
 // Function for using context
@@ -10,7 +11,7 @@ export const useAuth = () => {
 // Auth Provider
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
-
+  const history = useHistory();
   useEffect(() => {
     const unsubscriber = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -21,25 +22,62 @@ export const AuthProvider = ({ children }) => {
   const signup = async (email, password) => {
     try {
       await auth.createUserWithEmailAndPassword(email, password);
-      message.success("You are successfully registered.");
+      notification.success({
+        message: "Registration Completed",
+        description: "You are successfully registered.",
+        placement: "bottomRight",
+      });
+      history.push("/");
     } catch (error) {
-      message.error(error.message);
+      notification.error({
+        message: "Error in Registration",
+        description: error.message,
+        placement: "bottomRight",
+      });
+    }
+  };
+  // Login Function
+  const login = async (email, password) => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      notification.success({
+        message: "Signed in",
+        description: "You are successfully signed in.",
+        placement: "bottomRight",
+      });
+      history.push("/");
+    } catch (error) {
+      notification.error({
+        message: "Error in Login",
+        description: error.message,
+        placement: "bottomRight",
+      });
     }
   };
   // Logout Function
   const logout = async () => {
     try {
       await auth.signOut();
-      message.success("You are logged out successfully.");
+      notification.success({
+        message: "Logged out",
+        description:
+          "You are logged out. Please sign in again to access other info",
+        placement: "bottomRight",
+      });
     } catch (error) {
-      message.error(error.message);
+      notification.error({
+        message: "Error in Login",
+        description: error.message,
+        placement: "bottomRight",
+      });
     }
   };
 
   const value = {
     currentUser,
+    login,
     signup,
-    logout
+    logout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

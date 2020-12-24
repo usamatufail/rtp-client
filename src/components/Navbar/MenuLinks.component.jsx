@@ -38,7 +38,7 @@ const MenuLinks = () => {
         </MenuItemGroup>
       </SubMenu>
       <Menu.Item key="teach">
-        <Link to="/teach">Teach on Gura</Link>
+        <Link to="/signup?userType='volunteer'">Become Volunteer</Link>
       </Menu.Item>
       {!currentUser ? (
         <>
