@@ -8,7 +8,9 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "airbnb",
-    "airbnb/hooks"
+    "airbnb/hooks",
+    "prettier",
+    "prettier/react"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -18,7 +20,7 @@
     "sourceType": "module",
     "project": "./jsconfig.json"
   },
-  "plugins": ["react", "react-hooks", "jsx-a11y", "import"],
+  "plugins": ["react", "react-hooks", "jsx-a11y", "import", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": 0,
     "import/prefer-default-export": 0,
@@ -30,7 +32,8 @@
     "prefer-promise-reject-errors": 0,
     "no-param-reassign": 0,
     "dot-notation": 0,
-    "no-tabs": 2
+    "no-tabs": 2,
+    "no-unused-vars": "warn"
   },
   "settings": {
     "react": {
