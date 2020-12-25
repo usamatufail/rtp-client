@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     });
-  }, []);
+  }, [setLoading]);
   // Signup Function
   const signup = async (email, password, userType) => {
     try {
