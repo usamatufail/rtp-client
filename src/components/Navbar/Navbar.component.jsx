@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 // Ant Design Components
-import { Drawer, Button, Typography } from "antd";
+import { Drawer, Button, Typography } from 'antd';
 // Custom Components
-import MenuLinks from "./MenuLinks.component";
+import MenuLinks from './MenuLinks.component';
 // Styles
-import "./Navbar.styles.scss";
+import './Navbar.styles.scss';
 
 export const Navbar = () => {
   // State to handle drawer current state

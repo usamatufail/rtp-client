@@ -1,12 +1,14 @@
-import React from "react";
-import { Form, Input, Button, Typography, Row, Col } from "antd";
-import { Link } from "react-router-dom";
-import { useAuth } from "context/AuthContext";
+import React from 'react';
+import {
+  Form, Input, Button, Typography, Row, Col,
+} from 'antd';
+import { Link } from 'react-router-dom';
+import { useAuth } from 'context/AuthContext';
 
 export const ForgotPasswordForm = () => {
   const [form] = Form.useForm();
 
-  //Extracting resetPassword function from authContext
+  // Extracting resetPassword function from authContext
   const { resetPassword } = useAuth();
 
   const onFinish = (values) => {
@@ -15,10 +17,10 @@ export const ForgotPasswordForm = () => {
   };
 
   return (
-    <div style={{ minWidth: "375px" }}>
+    <div style={{ minWidth: '375px' }}>
       <Typography.Title level={2}>Password Reset</Typography.Title>
       <Form
-        layout={"vertical"}
+        layout="vertical"
         form={form}
         name="register"
         onFinish={onFinish}
@@ -29,12 +31,12 @@ export const ForgotPasswordForm = () => {
           label="E-mail"
           rules={[
             {
-              type: "email",
-              message: "The input is not valid E-mail!",
+              type: 'email',
+              message: 'The input is not valid E-mail!',
             },
             {
               required: true,
-              message: "Please input your E-mail!",
+              message: 'Please input your E-mail!',
             },
           ]}
         >
@@ -44,7 +46,7 @@ export const ForgotPasswordForm = () => {
           <Button
             type="primary"
             htmlType="submit"
-            style={{ marginTop: "1rem", width: "100%" }}
+            style={{ marginTop: '1rem', width: '100%' }}
           >
             Reset Password
           </Button>

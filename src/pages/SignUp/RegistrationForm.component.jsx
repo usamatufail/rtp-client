@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Form,
   Input,
@@ -8,19 +8,18 @@ import {
   Row,
   Col,
   Radio,
-} from "antd";
-import { Link } from "react-router-dom";
-import { Loader } from "components";
-import { useAuth } from "context/AuthContext";
+} from 'antd';
+import { Link } from 'react-router-dom';
+import { Loader } from 'components';
+import { useAuth } from 'context/AuthContext';
 
 export const RegistrationForm = () => {
   const [form] = Form.useForm();
 
-  //Extracting signup function from authContext
+  // Extracting signup function from authContext
   const { signup, loading } = useAuth();
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
     const { email, password, userType } = values;
     signup(email, password, userType);
   };
@@ -30,10 +29,10 @@ export const RegistrationForm = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div style={{ minWidth: "375px" }}>
+        <div style={{ minWidth: '375px' }}>
           <Typography.Title level={2}>Sign Up</Typography.Title>
           <Form
-            layout={"vertical"}
+            layout="vertical"
             form={form}
             name="register"
             onFinish={onFinish}
@@ -45,7 +44,7 @@ export const RegistrationForm = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please select how want to be part of us!",
+                  message: 'Please select how want to be part of us!',
                 },
               ]}
             >
@@ -63,12 +62,12 @@ export const RegistrationForm = () => {
               label="E-mail"
               rules={[
                 {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
+                  type: 'email',
+                  message: 'The input is not valid E-mail!',
                 },
                 {
                   required: true,
-                  message: "Please input your E-mail!",
+                  message: 'Please input your E-mail!',
                 },
               ]}
             >
@@ -81,7 +80,7 @@ export const RegistrationForm = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your password!",
+                  message: 'Please input your password!',
                 },
               ]}
               hasFeedback
@@ -92,20 +91,20 @@ export const RegistrationForm = () => {
             <Form.Item
               name="confirm"
               label="Confirm Password"
-              dependencies={["password"]}
+              dependencies={['password']}
               hasFeedback
               rules={[
                 {
                   required: true,
-                  message: "Please confirm your password!",
+                  message: 'Please confirm your password!',
                 },
                 ({ getFieldValue }) => ({
                   validator(rule, value) {
-                    if (!value || getFieldValue("password") === value) {
+                    if (!value || getFieldValue('password') === value) {
                       return Promise.resolve();
                     }
                     return Promise.reject(
-                      "The two passwords that you entered do not match!"
+                      'The two passwords that you entered do not match!',
                     );
                   },
                 }),
@@ -119,21 +118,22 @@ export const RegistrationForm = () => {
               valuePropName="checked"
               rules={[
                 {
-                  validator: (_, value) =>
-                    value
-                      ? Promise.resolve()
-                      : Promise.reject("Should accept agreement"),
+                  validator: (_, value) => (value
+                    ? Promise.resolve()
+                    : Promise.reject('Should accept agreement')),
                 },
               ]}
             >
               <Checkbox>
-                I have read the <a href="/">agreement</a>
+                I have read the
+                {' '}
+                <a href="/">agreement</a>
               </Checkbox>
             </Form.Item>
             <Form.Item>
               <Button
                 loading={loading}
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
                 type="primary"
                 htmlType="submit"
               >

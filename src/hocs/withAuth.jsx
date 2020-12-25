@@ -1,5 +1,5 @@
-import { Loader } from "components";
-import { useAuth } from "context/AuthContext";
+import { Loader } from 'components';
+import { useAuth } from 'context/AuthContext';
 
 export const withAuth = (WrappedComponent) => (props) => {
   const { currentUser } = useAuth();

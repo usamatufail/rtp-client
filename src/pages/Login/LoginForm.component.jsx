@@ -1,25 +1,26 @@
-import React from "react";
-import { Form, Input, Button, Typography, Row, Col } from "antd";
-import { Link } from "react-router-dom";
-import { useAuth } from "context/AuthContext";
+import React from 'react';
+import {
+  Form, Input, Button, Typography, Row, Col,
+} from 'antd';
+import { Link } from 'react-router-dom';
+import { useAuth } from 'context/AuthContext';
 
 export const LoginForm = () => {
   const [form] = Form.useForm();
 
-  //Extracting login function from authContext
+  // Extracting login function from authContext
   const { login, loading } = useAuth();
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
     const { email, password } = values;
     login(email, password);
   };
 
   return (
-    <div style={{ minWidth: "375px" }}>
+    <div style={{ minWidth: '375px' }}>
       <Typography.Title level={2}>Log in</Typography.Title>
       <Form
-        layout={"vertical"}
+        layout="vertical"
         form={form}
         name="register"
         onFinish={onFinish}
@@ -30,12 +31,12 @@ export const LoginForm = () => {
           label="E-mail"
           rules={[
             {
-              type: "email",
-              message: "The input is not valid E-mail!",
+              type: 'email',
+              message: 'The input is not valid E-mail!',
             },
             {
               required: true,
-              message: "Please input your E-mail!",
+              message: 'Please input your E-mail!',
             },
           ]}
         >
@@ -48,7 +49,7 @@ export const LoginForm = () => {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: 'Please input your password!',
             },
           ]}
           hasFeedback
@@ -60,7 +61,7 @@ export const LoginForm = () => {
             loading={loading}
             type="primary"
             htmlType="submit"
-            style={{ marginTop: "1rem", width: "100%" }}
+            style={{ marginTop: '1rem', width: '100%' }}
           >
             Login
           </Button>

@@ -1,5 +1,5 @@
-import { Loader } from "components";
-import { useLoading } from "context/LoadingContext";
+import { Loader } from 'components';
+import { useLoading } from 'context/LoadingContext';
 
 export const withLoading = (WrappedComponent) => (props) => {
   const { loading } = useLoading();

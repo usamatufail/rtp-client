@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 // Ant Design Components
-import { Menu, Grid, Button } from "antd";
-import { DownOutlined } from "@ant-design/icons";
-import { useAuth } from "context/AuthContext";
+import { Menu, Grid, Button } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import { useAuth } from 'context/AuthContext';
 // Extracting Sub Components from Ant Design Components
 const { SubMenu } = Menu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -12,21 +12,21 @@ const MenuLinks = () => {
   const { currentUser, logout } = useAuth();
   const { md } = useBreakpoint();
   return (
-    <Menu mode={md ? "horizontal" : "inline"}>
+    <Menu mode={md ? 'horizontal' : 'inline'}>
       <SubMenu
         key="sub1"
-        title={
+        title={(
           <span
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}
           >
-            <span style={{ marginRight: "5px" }}>Discover</span>
+            <span style={{ marginRight: '5px' }}>Discover</span>
             <DownOutlined />
           </span>
-        }
+        )}
       >
         <MenuItemGroup title="Categories">
           <Menu.Item key="setting:1">Discover 1</Menu.Item>

@@ -1,7 +1,7 @@
-import React, { Suspense } from "react";
-import { Switch, Route } from "react-router-dom";
-import { Error404, Navbar, Loader } from "components";
-import pages from "pages";
+import React, { Suspense } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { Error404, Navbar, Loader } from 'components';
+import pages from 'pages';
 
 function App() {
   return (
