@@ -104,7 +104,7 @@ export const RegistrationForm = () => {
                       return Promise.resolve();
                     }
                     return Promise.reject(
-                      'The two passwords that you entered do not match!',
+                      'The two passwords that you entered do not match!'
                     );
                   },
                 }),
@@ -118,16 +118,15 @@ export const RegistrationForm = () => {
               valuePropName="checked"
               rules={[
                 {
-                  validator: (_, value) => (value
-                    ? Promise.resolve()
-                    : Promise.reject('Should accept agreement')),
+                  validator: (_, value) =>
+                    value
+                      ? Promise.resolve()
+                      : Promise.reject('Should accept agreement'),
                 },
               ]}
             >
               <Checkbox>
-                I have read the
-                {' '}
-                <a href="/">agreement</a>
+                I have read the <a href="/">agreement</a>
               </Checkbox>
             </Form.Item>
             <Form.Item>
