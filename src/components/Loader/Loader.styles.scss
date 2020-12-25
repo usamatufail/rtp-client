@@ -1,0 +1,12 @@
+.loader-container {
+  height: 80vh;
+  width: 100vw;
+  background: white;
+  position: relative;
+}
+.loader-container div[aria-label="animation"] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

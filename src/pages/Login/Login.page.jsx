@@ -1,6 +1,6 @@
 import { Row, Col } from "antd";
 import { LoginForm } from "./LoginForm.component";
-import { withoutAuth } from "hocs";
+import { withoutAuth, withLoading } from "hocs";
 import "./Login.styles.scss";
 
 const Login = () => {
@@ -20,4 +20,4 @@ const Login = () => {
   );
 };
 
-export default withoutAuth(Login);
+export default withLoading(withoutAuth(Login));

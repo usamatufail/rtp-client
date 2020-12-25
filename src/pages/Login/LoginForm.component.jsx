@@ -7,7 +7,7 @@ export const LoginForm = () => {
   const [form] = Form.useForm();
 
   //Extracting login function from authContext
-  const { login } = useAuth();
+  const { login, loading } = useAuth();
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
@@ -57,6 +57,7 @@ export const LoginForm = () => {
         </Form.Item>
         <Form.Item>
           <Button
+            loading={loading}
             type="primary"
             htmlType="submit"
             style={{ marginTop: "1rem", width: "100%" }}

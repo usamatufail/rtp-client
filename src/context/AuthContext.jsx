@@ -1,7 +1,8 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
 import { notification } from "antd";
-import { auth } from "../firebase";
+import { auth, db } from "firebase-config";
 import { useHistory } from "react-router-dom";
+import { useLoading } from "context/LoadingContext";
 // Creating Authentication Context
 const AuthContext = createContext();
 // Function for using context
@@ -10,23 +11,45 @@ export const useAuth = () => {
 };
 // Auth Provider
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(null);
+  const { loading, setLoading } = useLoading();
   const history = useHistory();
+  console.log(loading);
   useEffect(() => {
-    const unsubscriber = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        setLoading(true);
+        const userData = await db.collection("users").doc(user.uid).get();
+        user["info"] = userData.data();
+        setCurrentUser(user);
+        setLoading(false);
+      }
     });
-    return unsubscriber;
   }, []);
   // Signup Function
-  const signup = async (email, password) => {
+  const signup = async (email, password, userType) => {
     try {
-      await auth.createUserWithEmailAndPassword(email, password);
+      setLoading(true);
+      const credentials = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await db.collection("users").doc(credentials.user.uid).set({
+        userType,
+      });
+
+      // Setting User in State
+      const { user } = credentials;
+      const userData = await db.collection("users").doc(user.uid).get();
+      user["info"] = userData.data();
+      setCurrentUser(user);
+
       notification.success({
         message: "Registration Completed",
         description: "You are successfully registered.",
         placement: "bottomRight",
       });
+      setLoading(false);
       history.push("/");
     } catch (error) {
       notification.error({
@@ -34,17 +57,30 @@ export const AuthProvider = ({ children }) => {
         description: error.message,
         placement: "bottomRight",
       });
+      setLoading(false);
     }
   };
   // Login Function
   const login = async (email, password) => {
     try {
-      await auth.signInWithEmailAndPassword(email, password);
+      setLoading(true);
+      const credentials = await auth.signInWithEmailAndPassword(
+        email,
+        password
+      );
+
+      // Setting User in State
+      const { user } = credentials;
+      const userData = await db.collection("users").doc(user.uid).get();
+      user["info"] = userData.data();
+      setCurrentUser(user);
+
       notification.success({
         message: "Signed in",
         description: "You are successfully signed in.",
         placement: "bottomRight",
       });
+      setLoading(false);
       history.push("/");
     } catch (error) {
       notification.error({
@@ -52,12 +88,14 @@ export const AuthProvider = ({ children }) => {
         description: error.message,
         placement: "bottomRight",
       });
+      setLoading(false);
     }
   };
   // Logout Function
   const logout = async () => {
     try {
       await auth.signOut();
+      setCurrentUser(null);
       notification.success({
         message: "Logged out",
         description:
@@ -92,6 +130,7 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     currentUser,
+    loading,
     login,
     signup,
     logout,

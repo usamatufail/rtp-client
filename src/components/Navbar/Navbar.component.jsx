@@ -7,7 +7,7 @@ import MenuLinks from "./MenuLinks.component";
 // Styles
 import "./Navbar.styles.scss";
 
-const Navbar = () => {
+export const Navbar = () => {
   // State to handle drawer current state
   const [visible, setVisible] = useState(false);
   // Function to handle show drawer
@@ -46,5 +46,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;
